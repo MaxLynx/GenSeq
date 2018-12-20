@@ -28,12 +28,12 @@ public class RNASequenceController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="")
 	public void setRNASequence(@RequestBody RNASequence rnaSequence){
-		rnaSequenceService.setGeneticSequence(rnaSequence);
+		rnaSequenceService.setGeneticSequence(rnaSequence.normalize());
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/{id}")
 	public void updateRNASequence(@PathVariable String id, @RequestBody RNASequence rnaSequence){
-		rnaSequenceService.setGeneticSequence(id, rnaSequence);
+		rnaSequenceService.setGeneticSequence(id, rnaSequence.normalize());
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")

@@ -28,13 +28,13 @@ public class ProteinSequenceController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="")
 	public void setProteinSequence(@RequestBody ProteinSequence proteinSequence){
-		proteinSequenceService.setGeneticSequence(proteinSequence);
+		proteinSequenceService.setGeneticSequence(proteinSequence.normalize());
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/{id}")
 	public void updateProteinSequence(@PathVariable String id, 
 			@RequestBody ProteinSequence proteinSequence){
-		proteinSequenceService.setGeneticSequence(id, proteinSequence);
+		proteinSequenceService.setGeneticSequence(id, proteinSequence.normalize());
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")

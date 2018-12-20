@@ -1,20 +1,13 @@
 package edu.dnaprocessing.sequence;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import org.springframework.data.annotation.Id;
 
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * A general entity class for genetic sequence representation
  */
-@Entity
-@Inheritance
 public abstract class GeneticSequence {
-	@Id @GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@Id
 	private String id;
 	private String sequence;
 	private String description;
@@ -55,4 +48,9 @@ public abstract class GeneticSequence {
 	public void setValid(boolean valid) {
 		this.valid = valid;
 	}
+
+	public GeneticSequence normalize(){
+	    this.sequence = this.sequence.toUpperCase();
+	    return this;
+    }
 }
