@@ -12,4 +12,6 @@ public interface DNASequenceService extends GeneticSequenceService {
 	
 	void setDNASequences(List<DNASequence> dnaSequences);
 
+	List<DNASequence> getSimilarDNASequences(DNASequence sequence);
+
 }

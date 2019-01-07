@@ -20,6 +20,11 @@ public class DNASequenceController {
 	public List<DNASequence> getDNASequences(){
 		return dnaSequenceService.getDNASequences();
 	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/search")
+	public List<DNASequence> getSimilarDNASequences(@RequestBody DNASequence dnaSequence){
+		return dnaSequenceService.getSimilarDNASequences(dnaSequence);
+	}
 	
 	@RequestMapping("/{id}")
 	public DNASequence getDNASequence(@PathVariable String id){

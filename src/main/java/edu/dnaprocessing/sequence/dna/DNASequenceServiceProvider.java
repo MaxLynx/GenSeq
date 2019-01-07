@@ -1,7 +1,11 @@
 package edu.dnaprocessing.sequence.dna;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import edu.dnaprocessing.utils.dna.DNAUtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +26,36 @@ public class DNASequenceServiceProvider implements DNASequenceService{
 		return dnaSequences;
 	}
 
+	public List<DNASequence> getSimilarDNASequences(DNASequence sequence) {
+	    sequence.setSequence(prepareSequence(sequence.getSequence()));
+		List<DNASequence> dnaSequences = new ArrayList<DNASequence>();
+		dnaSequenceRepository.findAll().forEach(dnaSequences::add);
+		Set<DNASequence> similarSequences = new HashSet<>();
+		for(int i = 0; i < Math.log(sequence.getSequence().length()) / Math.log(4); i++){
+		    for(int k = 0; k < Math.pow(4,  i); k++) {
+                String template = sequence.getSequence().substring(k*sequence.getSequence().length()
+                                / ((int)Math.pow(4,  i))
+                        ,(k+1)*sequence.getSequence().length()
+                                / ((int)Math.pow(4,  i)));
+                if(template.length() > 3) {
+                    dnaSequences.parallelStream().forEach((seq) -> {
+                        if (seq.getSequence().length() >= template.length())
+                            if (seq.getSequence().contains(template))
+                                similarSequences.add(seq);
+                            else if (template.contains(seq.getSequence()))
+                                similarSequences.add(seq);
+                    });
+                }
+            }
+
+        }
+		return new ArrayList<>(similarSequences);
+	}
+
 	public void setDNASequences(List<DNASequence> dnaSequences) {
+	    for(DNASequence seq : dnaSequences){
+            seq.setSequence(prepareSequence(seq.getSequence()));
+        }
 		dnaSequenceRepository.saveAll(dnaSequences);
 	}
 
@@ -31,16 +64,28 @@ public class DNASequenceServiceProvider implements DNASequenceService{
 	}
 
 	public void setGeneticSequence(GeneticSequence dnaSequence) {
-		dnaSequenceRepository.save((DNASequence)dnaSequence);
+        dnaSequence.setSequence(prepareSequence(dnaSequence.getSequence()));
+        dnaSequenceRepository.save((DNASequence)dnaSequence);
 	}
 
 	public void setGeneticSequence(String id, GeneticSequence dnaSequence) {
-		dnaSequenceRepository.save((DNASequence) dnaSequence);
+        dnaSequence.setSequence(prepareSequence(dnaSequence.getSequence()));
+        dnaSequenceRepository.save((DNASequence) dnaSequence);
 	}
 
 	public void removeGeneticSequence(String id) {
 		dnaSequenceRepository.deleteById(id);
 		
 	}
+
+    private String prepareSequence(String sequence){
+        StringBuilder preparedSequence = new StringBuilder();
+        char [] baseArray = sequence.toUpperCase().toCharArray();
+        for(char base : baseArray){
+            if(!DNAUtilsService.WHITE_SPACES.contains("" + base))
+                preparedSequence.append(base);
+        }
+        return preparedSequence.toString();
+    }
 
 }
