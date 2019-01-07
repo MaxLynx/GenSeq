@@ -1,5 +1,7 @@
 package edu.dnaprocessing.utils.dna;
 
+import edu.dnaprocessing.sequence.protein.ProteinSequence;
+import edu.dnaprocessing.sequence.rna.RNASequence;
 import org.springframework.data.util.Pair;
 
 import edu.dnaprocessing.sequence.dna.DNASequence;
@@ -45,5 +47,10 @@ public interface DNAUtilsService {
 	 * Creates a random DNA sequence for the given length 
 	 */
 	DNASequence random(int length);
+
+    /**
+     * Transcripts the given DNA sequence to messenger RNA
+     */
+	RNASequence transcript(DNASequence dnaSequence);
 
 }

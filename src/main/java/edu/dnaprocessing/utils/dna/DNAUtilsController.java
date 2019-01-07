@@ -1,6 +1,7 @@
 package edu.dnaprocessing.utils.dna;
 
 
+import edu.dnaprocessing.sequence.rna.RNASequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +44,11 @@ public class DNAUtilsController {
 	public DNASequence mutateDNASequence(@RequestBody DNASequence dnaSequence, 
 			@PathVariable int percentage){
 		return dnaUtilsService.mutate(dnaSequence, percentage);
+	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/transcript")
+	public RNASequence transcriptDNASequence(@RequestBody DNASequence dnaSequence){
+		return dnaUtilsService.transcript(dnaSequence);
 	}
 	
 }

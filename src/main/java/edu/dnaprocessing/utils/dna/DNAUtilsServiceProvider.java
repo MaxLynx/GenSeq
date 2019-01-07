@@ -2,6 +2,7 @@ package edu.dnaprocessing.utils.dna;
 
 import java.util.Random;
 
+import edu.dnaprocessing.sequence.rna.RNASequence;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
@@ -88,6 +89,13 @@ public class DNAUtilsServiceProvider implements DNAUtilsService {
 		sequence.setSequence(sequenceBuilder.toString());
 		return sequence;
 	}
+
+	public RNASequence transcript(DNASequence dnaSequence){
+	    RNASequence rnaSequence = new RNASequence();
+	    rnaSequence.setSequence(dnaSequence.getSequence().replace('T', 'U'));
+	    rnaSequence.setDescription("mRNA: " + dnaSequence.getDescription());
+	    return rnaSequence;
+    }
 	
 	private String prepareSequence(String sequence){
 		StringBuilder preparedSequence = new StringBuilder();
