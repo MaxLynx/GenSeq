@@ -12,4 +12,6 @@ public interface ProteinSequenceService extends GeneticSequenceService {
 	
 	void setProteinSequences(List<ProteinSequence> proteinSequences);
 
+	List<ProteinSequence> getSimilarProteinSequences(ProteinSequence sequence);
+
 }

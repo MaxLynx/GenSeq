@@ -92,7 +92,7 @@ public class DNAUtilsServiceProvider implements DNAUtilsService {
 
 	public RNASequence transcript(DNASequence dnaSequence){
 	    RNASequence rnaSequence = new RNASequence();
-	    rnaSequence.setSequence(dnaSequence.getSequence().replace('T', 'U'));
+	    rnaSequence.setSequence(dnaSequence.getSequence().replace(THYMINE, 'U'));
 	    rnaSequence.setDescription("mRNA: " + dnaSequence.getDescription());
 	    return rnaSequence;
     }

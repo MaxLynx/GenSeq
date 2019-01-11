@@ -20,6 +20,11 @@ public class ProteinSequenceController {
 	public List<ProteinSequence> getProteinSequences(){
 		return proteinSequenceService.getProteinSequences();
 	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/search")
+	public List<ProteinSequence> getSimilarDNASequences(@RequestBody ProteinSequence proteinSequence){
+		return proteinSequenceService.getSimilarProteinSequences(proteinSequence);
+	}
 	
 	@RequestMapping("/{id}")
 	public ProteinSequence getProteinSequence(@PathVariable String id){
