@@ -17,7 +17,7 @@ public interface ProteinUtilsService {
 	public static final char CYSTEINE = 'C';
 	public static final char METHIONINE = 'M';
 	public static final char SERINE = 'S';
-	public static final char THEONINE = 'T';
+	public static final char THREONINE = 'T';
 	public static final char ASPARAGINE = 'N';
 	public static final char GLUTAMINE = 'Q';
 	public static final char GLYCINE = 'G';
@@ -27,8 +27,12 @@ public interface ProteinUtilsService {
 	public static final char ISOLEUCINE = 'I';
 	public static final char PROLINE = 'P';
 
+	public static final String OPEN_READING_FRAME_ABBREVIATION = "ORF";
+	public static final String OPEN_READING_FRAME_START = ": ";
+	public static final String OPEN_READING_FRAME_END = ";\n";
+
 	public static final char[] AMINO_ACIDS = {ASPARTATE, GLUTAMATE, LYSINE, ARGININE, HISTIDINE, 
-			TYROSINE, TRYPTOPHAN, PHENYLALANINE, CYSTEINE, METHIONINE, SERINE, THEONINE,
+			TYROSINE, TRYPTOPHAN, PHENYLALANINE, CYSTEINE, METHIONINE, SERINE, THREONINE,
 			ASPARAGINE, GLUTAMINE, GLYCINE, ALANINE, VALINE, LEUCINE, ISOLEUCINE, PROLINE};
 	
 	public static final String RANDOM_GENERATION_MARKER = "RANDOMLY GENERATED SEQUENCE";

@@ -1,6 +1,7 @@
 package edu.dnaprocessing.utils.dna;
 
 
+import edu.dnaprocessing.sequence.protein.ProteinSequence;
 import edu.dnaprocessing.sequence.rna.RNASequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -49,6 +50,11 @@ public class DNAUtilsController {
 	@RequestMapping(method=RequestMethod.POST, value="/transcript")
 	public RNASequence transcriptDNASequence(@RequestBody DNASequence dnaSequence){
 		return dnaUtilsService.transcript(dnaSequence);
+	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/translate")
+	public ProteinSequence translateDNASequence(@RequestBody DNASequence dnaSequence){
+		return dnaUtilsService.translate(dnaSequence);
 	}
 	
 }

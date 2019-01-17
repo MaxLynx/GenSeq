@@ -15,6 +15,7 @@ public interface DNAUtilsService {
 	public static final char CYTOSINE = 'C';
 	public static final char GUANINE = 'G';
 	public static final char THYMINE = 'T';
+	public static final char URACIL = 'U';
 	public static final char[] BASES = {ADENINE, CYTOSINE, GUANINE, THYMINE};
 	
 	public static final String RANDOM_GENERATION_MARKER = "RANDOMLY GENERATED SEQUENCE";
@@ -52,5 +53,11 @@ public interface DNAUtilsService {
      * Transcripts the given DNA sequence to messenger RNA
      */
 	RNASequence transcript(DNASequence dnaSequence);
+
+	/**
+	 * Translates the given DNA sequence to protein sequence
+	 */
+	ProteinSequence translate(DNASequence dnaSequence);
+
 
 }
