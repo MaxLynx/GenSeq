@@ -1,13 +1,21 @@
 package edu.dnaprocessing.sequence;
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 
 /**
  * A general entity class for genetic sequence representation
  */
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class GeneticSequence {
 	@Id
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	private String sequence;
 	private String description;
