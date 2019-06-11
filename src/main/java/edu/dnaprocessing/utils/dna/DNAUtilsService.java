@@ -36,7 +36,7 @@ public interface DNAUtilsService {
 	 * Randomly mutates the given DNA sequence by changing a given percentage of bases. 
 	 * The same base can be changed multiple times during the one mutation
 	 */
-	DNASequence mutate(DNASequence dnaSequence, int percentage);
+	DNASequence mutate(DNASequence dnaSequence, double percentage);
 
 	/**
 	 * Removes all no-DNA characters from the given sequence.

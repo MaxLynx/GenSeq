@@ -43,7 +43,7 @@ public class DNAUtilsController {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/mutate/{percentage}")
 	public DNASequence mutateDNASequence(@RequestBody DNASequence dnaSequence, 
-			@PathVariable int percentage){
+			@PathVariable double percentage){
 		return dnaUtilsService.mutate(dnaSequence, percentage);
 	}
 

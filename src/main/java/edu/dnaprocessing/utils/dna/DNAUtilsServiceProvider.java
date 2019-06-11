@@ -72,7 +72,7 @@ public class DNAUtilsServiceProvider implements DNAUtilsService {
 		return Pair.of(atPercentage, cgPercentage);
 	}
 	
-	public DNASequence mutate(DNASequence sequence, int percentage) {
+	public DNASequence mutate(DNASequence sequence, double percentage) {
 		StringBuilder sequenceBuilder = new StringBuilder(prepareSequence(sequence.getSequence()));
 		Random random = new Random();
 		double countOfMutations = sequenceBuilder.length()*percentage*1.0/100;
