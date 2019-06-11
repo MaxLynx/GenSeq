@@ -64,12 +64,15 @@ public class DNAUtilsServiceTest {
 		assertEquals(0.0, provider.measureBasePairPercentages(sequence).getFirst(), 1E-10);
 		assertEquals(0.0, provider.measureBasePairPercentages(sequence).getSecond(), 1E-10);	}
 	
-	@Test(timeout=1)
+	@Test(timeout=100)
 	public void testMutate(){
 		DNASequence originalSequence = new DNASequence();
-		originalSequence.setSequence("ACTTGCCCAG");
-		DNASequence mutatedSequence = provider.mutate(originalSequence, 10);
-		assertNotEquals("ACTTGCCCAG", mutatedSequence.getSequence());
+		String sample = "ACTTGCCCAGCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" +
+				"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG" +
+				"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
+		originalSequence.setSequence(sample);
+		DNASequence mutatedSequence = provider.mutate(originalSequence, 1);
+		assertNotEquals(sample, mutatedSequence.getSequence());
 	}
 	
 }

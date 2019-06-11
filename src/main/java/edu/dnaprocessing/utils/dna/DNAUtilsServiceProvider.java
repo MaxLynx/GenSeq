@@ -75,18 +75,12 @@ public class DNAUtilsServiceProvider implements DNAUtilsService {
 	public DNASequence mutate(DNASequence sequence, double percentage) {
 		StringBuilder sequenceBuilder = new StringBuilder(prepareSequence(sequence.getSequence()));
 		Random random = new Random();
-		double countOfMutations = sequenceBuilder.length()*percentage*1.0/100;
+		int countOfMutations = (int)Math.floor(sequenceBuilder.length()*percentage*1.0/100);
 		for(int i = 0; i < countOfMutations; i++){
 			int randomIndex = CODON_LENGTH + random.nextInt(sequenceBuilder.length() - 2*CODON_LENGTH);
-			char originalBase = sequenceBuilder.charAt(randomIndex);
-			boolean mutationDone = false;
-			do{
 			char mutatedBase = randomBase(randomIndex - CODON_LENGTH);
-			if(originalBase != mutatedBase){
-				sequenceBuilder.setCharAt(randomIndex, mutatedBase);
-				mutationDone = true;
-			}
-			} while(!mutationDone);
+			sequenceBuilder.setCharAt(randomIndex, mutatedBase);
+
 		}
 		sequence.setSequence(sequenceBuilder.toString());
 		return sequence;
